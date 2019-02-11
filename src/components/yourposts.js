@@ -156,9 +156,9 @@ class YourPosts extends Component{
                                         </ul>
                                     )
                                 })}</li>
+                                <button onClick = {() => this.handleView('update', p.id)}>Update</button>
+                                <button onClick = {() => this.handleView('delete', p.id)}>Delete</button>
                             </ul>
-                            <button onClick = {() => this.handleView('update', p.id)}>Update</button>
-                            <button onClick = {() => this.handleView('delete', p.id)}>Delete</button>
                         </div>
                         )    
                     })
