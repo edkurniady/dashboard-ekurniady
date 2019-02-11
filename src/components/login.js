@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Axios from 'axios'
 import Cookies from 'universal-cookie'
 import {Link} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component{
     constructor(props){
@@ -33,14 +34,19 @@ class Login extends Component{
             }else if(res.data === 'pwerror'){
                 return alert('Username and password do not match!')
             }else{
-                var cookies = new Cookies();
-                cookies.set('token', res.data, { path: '/' });
+                var cookies = new Cookies()
+                cookies.set('token', res.data, { path: '/' })
+                alert('Successful Login!')
                 return this.props.history.push('home')
             }
         })
     }
 
     render(){
+        var cookies = new Cookies()
+        if(cookies.get('token')){
+            return <Redirect to='/home' />
+        }
         return(
             <div className='loginpage'>
             <form onSubmit = {this.login}>
